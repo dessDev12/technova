@@ -1,0 +1,14 @@
+{
+  "welcome": "Welcome",
+  "login": "Login",
+  "signup": "Sign Up",
+  "rideNow": "Ride Now",
+  "accountSetup": "Account Setup",
+  "profile": "Profile",
+  "car": "Car",
+  "documents": "Documents",
+  "next": "Next",
+  "back": "Back",
+  "finish": "Finish",
+  "setupCompleted": "Account setup completed!"
+}
