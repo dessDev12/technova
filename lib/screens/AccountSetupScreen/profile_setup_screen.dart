@@ -1,4 +1,6 @@
+import 'package:driver/widgets/Forms/CustomFormField.dart';
 import 'package:flutter/material.dart';
+import '../../generated/l10n.dart';
 
 class ProfileStep extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -6,27 +8,37 @@ class ProfileStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
+
     return Form(
       key: formKey,
       child: Column(
         children: [
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'Full Name'),
-            validator: (value) =>
-                value == null || value.isEmpty ? 'Enter your name' : null,
-          ),
-          const SizedBox(height: 10),
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'Email'),
-            validator: (value) => value == null || !value.contains('@')
-                ? 'Enter valid email'
+          CustomFormField(
+            label: s?.fullName ?? 'Full Name',
+            controller: TextEditingController(),
+            fieldType: FieldType.email, // can use FieldType.email or custom
+            validator: (value) => value == null || value.isEmpty
+                ? (s?.enterName ?? 'Enter your name')
                 : null,
           ),
           const SizedBox(height: 10),
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'Phone Number'),
-            validator: (value) =>
-                value == null || value.isEmpty ? 'Enter phone number' : null,
+          CustomFormField(
+            label: s?.email ?? 'Email',
+            controller: TextEditingController(),
+            fieldType: FieldType.email,
+            validator: (value) => value == null || !value.contains('@')
+                ? (s?.enterValidEmail ?? 'Enter valid email')
+                : null,
+          ),
+          const SizedBox(height: 10),
+          CustomFormField(
+            label: s?.phoneNumber ?? 'Phone Number',
+            controller: TextEditingController(),
+            fieldType: FieldType.email, // custom type or general
+            validator: (value) => value == null || value.isEmpty
+                ? (s?.enterPhone ?? 'Enter phone number')
+                : null,
           ),
         ],
       ),

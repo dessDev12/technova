@@ -1,3 +1,4 @@
+import 'package:driver/generated/l10n.dart';
 import 'package:driver/provider/theme_provider.dart';
 import 'package:driver/screens/AccountSetupScreen/account_setup_screen.dart';
 import 'package:driver/screens/Login/LoginScreen.dart';
@@ -5,7 +6,6 @@ import 'package:driver/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'l10n/app_localizations.dart';
 import 'provider/locale_provider.dart';
 
 void main() {
@@ -33,17 +33,22 @@ class MyApp extends StatelessWidget {
       title: 'Technova Ride App',
       debugShowCheckedModeBanner: false,
       locale: localeProvider.locale,
-      supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [
-        AppLocalizationsDelegate(),
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      supportedLocales: S.delegate.supportedLocales,
       themeMode: themeProvider.themeMode,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: const AccountSetupScreen(),
+      home: Builder(
+        builder: (context) {
+          // Here S.of(context) is safe
+          return AccountSetupScreen();
+        },
+      ),
     );
   }
 }

@@ -1,11 +1,12 @@
+import 'package:driver/screens/Drawer/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../l10n/app_localizations.dart';
 import '../../provider/locale_provider.dart';
 import '../../provider/theme_provider.dart';
 import 'car_detialset_screen.dart';
 import 'document_setup_screen.dart';
 import 'profile_setup_screen.dart';
+import '../../generated/l10n.dart'; // Import generated localization
 
 class AccountSetupScreen extends StatefulWidget {
   const AccountSetupScreen({super.key});
@@ -34,7 +35,9 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
       setState(() => _currentStep++);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.setupCompleted)),
+        SnackBar(
+          content: Text(S.of(context).setupCompleted ?? "Setup Completed"),
+        ),
       );
     }
   }
@@ -44,10 +47,14 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   }
 
   Widget _buildStepIndicator(BuildContext context) {
-    final loc = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final s = S.of(context);
 
-    List<String> titles = [loc.profile, loc.car, loc.documents];
+    List<String> titles = [
+      s.profile ?? "Profile",
+      s.car ?? "Car",
+      s.documents ?? "Documents",
+    ];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -102,8 +109,9 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.accountSetup),
+        title: Text(S.of(context).accountSetup ?? "Account Setup"),
         actions: [
           IconButton(
             icon: Icon(
@@ -128,14 +136,14 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                 if (_currentStep > 0)
                   ElevatedButton(
                     onPressed: _prevStep,
-                    child: Text(AppLocalizations.of(context)!.back),
+                    child: Text(S.of(context).back ?? "Back"),
                   ),
                 ElevatedButton(
                   onPressed: _nextStep,
                   child: Text(
                     _currentStep == 2
-                        ? AppLocalizations.of(context)!.finish
-                        : AppLocalizations.of(context)!.next,
+                        ? (S.of(context).finish ?? "Finish")
+                        : (S.of(context).next ?? "Next"),
                   ),
                 ),
               ],

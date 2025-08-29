@@ -1,4 +1,6 @@
+import 'package:driver/widgets/Auth/CustomButton.dart';
 import 'package:flutter/material.dart';
+import '../../generated/l10n.dart';
 
 class DocumentStep extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -6,29 +8,31 @@ class DocumentStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
+
     return Form(
       key: formKey,
       child: Column(
         children: [
-          ElevatedButton(
+          CustomButton(
+            text: s?.uploadProfilePicture ?? 'Upload Profile Picture',
             onPressed: () {
               // Pick profile picture
             },
-            child: const Text('Upload Profile Picture'),
           ),
           const SizedBox(height: 10),
-          ElevatedButton(
+          CustomButton(
+            text: s?.uploadLicense ?? 'Upload License/ID',
             onPressed: () {
               // Pick license/ID
             },
-            child: const Text('Upload License/ID'),
           ),
           const SizedBox(height: 10),
-          ElevatedButton(
+          CustomButton(
+            text: s?.uploadCarDocuments ?? 'Upload Car Documents',
             onPressed: () {
               // Pick car documents
             },
-            child: const Text('Upload Car Documents'),
           ),
         ],
       ),

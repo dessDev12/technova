@@ -1,6 +1,6 @@
 import 'package:driver/screens/Drawer/app_drawer.dart';
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,18 +22,23 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              localeTexts.welcome,
+              localeTexts.welcome ?? "Welcome",
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Example: navigate to login or another page
+                // Example: navigate to login screen
               },
-              child: Text(localeTexts.login),
+              child: Text(localeTexts.login ?? "Login"),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(onPressed: () {}, child: Text(localeTexts.signup)),
+            ElevatedButton(
+              onPressed: () {
+                // Example: navigate to signup screen
+              },
+              child: Text(localeTexts.signup ?? "sign up"),
+            ),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:driver/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -11,7 +12,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.color = Colors.blue,
+    this.color = AppColors.primary,
     this.radius = 8.0,
     this.isLoading = false,
   });
